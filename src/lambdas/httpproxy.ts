@@ -5,7 +5,7 @@ import { AppModule } from "../app.module";
 import { Context } from "aws-lambda";
 import * as serverlessExpress from 'aws-serverless-express';
 import * as express from 'express';
-import {ExpressAdapter} from '@nestjs/platform-express';
+import { ExpressAdapter } from '@nestjs/platform-express';
 
 let lambdaProxy: Server;
 
@@ -16,13 +16,26 @@ async function bootstrap() {
     return serverlessExpress.createServer(expressServer);
 }
 
-export const handler = async (event: any, context: Context) => {
+export const handler = (event: any, context: Context) => {
     console.log('incoming request ...');
 
     if (!lambdaProxy) {
-        lambdaProxy = await bootstrap();
-        serverlessExpress.proxy(lambdaProxy, event, context);
+        bootstrap().then((server) => {
+            lambdaProxy = server;
+            serverlessExpress.proxy(lambdaProxy, event, context);
+        });
     } else {
         serverlessExpress.proxy(lambdaProxy, event, context);
     }
 }
+
+// export const handler = async (event: any, context: Context) => {
+//     console.log('incoming request ...');
+
+//     if (!lambdaProxy) {
+//         lambdaProxy = await bootstrap();
+//         serverlessExpress.proxy(lambdaProxy, event, context);
+//     } else {
+//         serverlessExpress.proxy(lambdaProxy, event, context);
+//     }
+// }
