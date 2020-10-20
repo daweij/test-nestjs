@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - npm ci
+      - npm run build
+      - npm uninstall *
+      - rm -rf ./node_modules
+      - npm i --only=prod
+      - aws cloudformation package --s3-bucket weijmers-sam-bucket --template-file template.yml --output-template-file template-generated.yml
+      #- aws cloudformation deploy --template-file template-generated.yml --stack-name pipeline-api --capabilities CAPABILITY_IAM
+artifacts:
+  type: zip
+  files:
+    - template.yml
+    - template-generated.yml

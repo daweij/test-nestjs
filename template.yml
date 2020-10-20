@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: NodeJS proxy api server ...
+Resources:
+  ApiProxy:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: 'lambdas/httpproxy.handler'
+      CodeUri: 'dist'
+      Runtime: nodejs12.x
+      Description: API!!!
+      MemorySize: 256
+      Timeout: 10
+      Events:
+        ProxyApiGreedy:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+  Logger:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: 'lambdas/logger.handler'
+      CodeUri: 'dist'
+      Runtime: nodejs12.x
+      Description: API!!!
+      MemorySize: 256
+      Timeout: 10
