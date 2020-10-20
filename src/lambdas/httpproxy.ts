@@ -28,14 +28,3 @@ export const handler = (event: any, context: Context) => {
         serverlessExpress.proxy(lambdaProxy, event, context);
     }
 }
-
-// export const handler = async (event: any, context: Context) => {
-//     console.log('incoming request ...');
-
-//     if (!lambdaProxy) {
-//         lambdaProxy = await bootstrap();
-//         serverlessExpress.proxy(lambdaProxy, event, context);
-//     } else {
-//         serverlessExpress.proxy(lambdaProxy, event, context);
-//     }
-// }
