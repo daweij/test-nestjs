@@ -17,6 +17,8 @@ async function bootstrap() {
 }
 
 export const handler = async (event: any, context: Context) => {
+    console.log('incoming request ...');
+
     if (!lambdaProxy) {
         lambdaProxy = await bootstrap();
         serverlessExpress.proxy(lambdaProxy, event, context);
