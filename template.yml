@@ -5,8 +5,7 @@ Resources:
   ApiProxy:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: httpproxy.handler
-      CodeUri: dist/lambdas/
+      Handler: dist/lambdas/httpproxy.handler
       Runtime: nodejs12.x
       Description: API!!!
       MemorySize: 1024
@@ -21,8 +20,7 @@ Resources:
   Logger:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: logger.handler
-      CodeUri: dist/lambdas/
+      Handler: dist/lambdas/logger.handler
       Runtime: nodejs12.x
       Description: API!!!
       MemorySize: 1024
