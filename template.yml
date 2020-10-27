@@ -37,4 +37,4 @@ Resources:
     Properties:
       CompatibleRuntimes:
         - nodejs12.x
-      ContentUri: .
+      ContentUri: /.
