@@ -5,10 +5,10 @@ Resources:
   ApiProxy:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: httpproxy.handler
-      CodeUri: dist/lambdas/
-      Layers:
-        - Ref: NodeModules
+      Handler: dist/lambdas/httpproxy.handler
+      CodeUri: .
+      #      Layers:
+      #        - Ref: NodeModules
       Runtime: nodejs12.x
       Description: API!!!
       MemorySize: 1024
@@ -23,19 +23,19 @@ Resources:
   Logger:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: logger.handler
-      CodeUri: dist/lambdas/
-      Layers:
-        - Ref: NodeModules
+      Handler: dist/lambdas/logger.handler
+      CodeUri: .
+      #      Layers:
+      #        - Ref: NodeModules
       Runtime: nodejs12.x
       Description: API!!!
       MemorySize: 1024
       Timeout: 10
-
-  NodeModules:
-    Type: AWS::Serverless::LayerVersion
-    Properties:
-      ContentUri: .
-      CompatibleRuntimes:
-        - nodejs12.x
-      RetentionPolicy: Delete
+#
+#  NodeModules:
+#    Type: AWS::Serverless::LayerVersion
+#    Properties:
+#      ContentUri: .
+#      CompatibleRuntimes:
+#        - nodejs12.x
+#      RetentionPolicy: Delete
