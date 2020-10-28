@@ -9,7 +9,8 @@ phases:
       - npm uninstall *
       - rm -rf ./node_modules
       - npm i --only=prod
-      - mkdir nodejs && cp node_modules nodejs
+      - mkdir nodejs
+      #- cp node_modules nodejs
       - aws cloudformation package --s3-bucket weijmers-sam-bucket --template-file template.yml --output-template-file template-generated.yml
       #- aws cloudformation deploy --template-file template-generated.yml --stack-name pipeline-api --capabilities CAPABILITY_IAM
 artifacts:
